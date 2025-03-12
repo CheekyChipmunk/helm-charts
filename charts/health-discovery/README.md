@@ -62,6 +62,7 @@ The chart can optionally be configured using the following parameters:
 | `healthDiscovery.tolerations` | Node Tolerations | [] |
 | `healthDiscovery.affinity` | Node Affinity | {} |
 | `healthDiscovery.nodeSelector` | Node Selector | {} |
+| `healthDiscovery.licenseSecret` | Existing secret that contains the license in subPath `license.lic` | "" |
 | `solr.tolerations` | Node Tolerations | [] |
 | `solr.affinity` | Node Affinity | {} |
 | `solr.nodeSelector` | Node Selector | {} |
