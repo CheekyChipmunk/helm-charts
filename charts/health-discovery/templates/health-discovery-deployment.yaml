@@ -92,11 +92,21 @@ spec:
           volumeMounts:
             - mountPath: /opt/resources/platform
               name: resourcevol
+            {{- if (.Values.healthDiscovery).licenseSecret }}
+            - name: license-volume
+              mountPath: /opt/resources/platform/license.lic
+              subPath: license.lic
+            {{- end }}
       restartPolicy: Always
       volumes:
         - name: resourcevol
           persistentVolumeClaim:
             claimName: resourcevol
+        {{- with (.Values.healthDiscovery).licenseSecret }}
+        - name: license-volume
+          secret:
+            secretName: {{ . }}
+        {{- end }}
       {{- with (.Values.healthDiscovery).tolerations }}
       tolerations:
       {{ toYaml . | nindent 8 }}
